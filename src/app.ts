@@ -1,5 +1,6 @@
 import express from 'express'
 import cors from 'cors'
+import db from './database/bootstrap'
 
 class App {
     public express: express.Application
@@ -9,6 +10,7 @@ class App {
 
       this.middlewares()
       this.routes()
+      this.database()
     }
 
     private middlewares (): void {
@@ -20,6 +22,12 @@ class App {
       this.express.get('/', (req, res) => {
         return res.send('Hello World')
       })
+    }
+
+    private database (): void {
+      db.authenticate()
+        .then(() => console.log('Database connected...'))
+        .catch(err => console.log('Error: ' + err))
     }
 }
 
