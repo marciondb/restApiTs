@@ -1,6 +1,6 @@
 import express from 'express'
 import cors from 'cors'
-import db from './database/bootstrap'
+import { createModels } from './database/bootstrap'
 
 class App {
     public express: express.Application
@@ -25,7 +25,8 @@ class App {
     }
 
     private database (): void {
-      db.authenticate()
+      const db = createModels()
+      db.sequelize.sync()
         .then(() => console.log('Database connected...'))
         .catch(err => console.log('Error: ' + err))
     }
