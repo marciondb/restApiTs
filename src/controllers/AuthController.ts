@@ -38,7 +38,6 @@ class AuthController {
 
   static changePassword = async (req: Request, res: Response):
   Promise<Response> => {
-    // Get ID from JWT
     const id = res.locals.jwtPayload.userId
 
     const { oldPassword, newPassword } = req.body

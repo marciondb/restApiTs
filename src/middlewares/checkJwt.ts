@@ -4,7 +4,30 @@ import * as jwt from 'jsonwebtoken'
 import config from '../config/config'
 
 export const checkJwt = (req: Request, res: Response, next: NextFunction):void => {
-  const token = <string>req.headers['auth']
+  const authHeader = <string>req.headers.authorization
+  console.log(authHeader)
+
+  // Para otimizar a verificacao INIT
+  if (!authHeader) {
+    res.status(401).send({ error: 'No token provider' })
+    return
+  }
+
+  const parts = authHeader.split(' ')
+
+  if (!parts.length === 2) {
+    res.status(401).send({ error: 'Token error' })
+    return
+  }
+
+  const [scheme, token] = parts
+
+  if (!/^Bearer$/i.test(scheme)) {
+    res.status(401).send({ error: 'Token malformatted' })
+    return
+  }
+  // Para otimizar a verificacao END
+
   let jwtPayload
 
   try {
