@@ -3,7 +3,9 @@ import { UserAttributes } from './interfaces/User'
 import { UserInstance } from './instance/User'
 import { SequelizeAttributes } from '../typings/SequelizeAttributes'
 
-export const UserFactory = (sequelize: Sequelize.Sequelize, DataTypes: Sequelize.DataTypes): Sequelize.Model<UserInstance, UserAttributes> => {
+export const UserFactory = (sequelize: Sequelize.Sequelize,
+  DataTypes: Sequelize.DataTypes):
+  Sequelize.Model<UserInstance, UserAttributes> => {
   const attributes: SequelizeAttributes<UserAttributes> = {
     name: {
       type: DataTypes.STRING(45)
@@ -20,7 +22,11 @@ export const UserFactory = (sequelize: Sequelize.Sequelize, DataTypes: Sequelize
     }
   }
 
-  const User = sequelize.define<UserInstance, UserAttributes>('User', attributes)
+  const User = sequelize.define<UserInstance, UserAttributes>(
+    'user',
+    attributes, {
+      freezeTableName: true
+    })
 
   return User
 }
