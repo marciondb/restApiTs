@@ -25,7 +25,9 @@ export const UserFactory = (sequelize: Sequelize.Sequelize,
   const User = sequelize.define<UserInstance, UserAttributes>(
     'user',
     attributes, {
-      freezeTableName: true
+      freezeTableName: true,
+      createdAt: 'created_at',
+      updatedAt: 'updated_at'
     })
 
   return User
