@@ -5,7 +5,7 @@ import { checkJwt } from '../middlewares/checkJwt'
 
 const router = Router()
 
-router.get('/', UserController.listAll)
+router.get('/', checkJwt, UserController.listAll)
 
 router.get('/:id([0-9]+)', checkJwt, UserController.getOneById
 )

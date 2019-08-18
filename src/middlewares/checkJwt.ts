@@ -12,7 +12,7 @@ export const checkJwt = (req: Request, res: Response, next: NextFunction):void =
     jwtPayload = <any>jwt.verify(token, config.jwtSecret)
     res.locals.jwtPayload = jwtPayload
   } catch (error) {
-    res.status(401).send()
+    res.status(401).send({ error: 'Not authenticated: ' + error.message })
     return
   }
 

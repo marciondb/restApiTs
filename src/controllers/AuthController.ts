@@ -10,7 +10,7 @@ class AuthController {
   static login = async (req: Request, res: Response): Promise<Response> => {
     const { email, password } = req.body
     if (!(email && password)) {
-      res.status(400).send()
+      res.status(400).send({ error: 'Email and password are mandatory!' })
     }
 
     const userRepository = getRepository(User)
@@ -18,11 +18,11 @@ class AuthController {
     try {
       user = await userRepository.findOneOrFail({ where: { email } })
     } catch (error) {
-      res.status(401).send()
+      res.status(401).send({ error: 'User not found!' })
     }
 
     if (!user.checkIfUnencryptedPasswordIsValid(password)) {
-      res.status(401).send()
+      res.status(401).send({ error: 'Invalid Password!' })
       return
     }
 
@@ -32,7 +32,8 @@ class AuthController {
       { expiresIn: '3h' }
     )
 
-    res.send(token)
+    user.password = undefined
+    res.send({ user, token })
   };
 
   static changePassword = async (req: Request, res: Response):
