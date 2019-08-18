@@ -9,7 +9,7 @@
     "dev": "sucrase-node src/server.ts",
     "prebuild": "rimraf dist",
     "build": "sucrase ./src -d ./dist --transforms typescript,imports",
-    "start": "ts-node ./dist/server.js"
+    "start": "set debug=* && ts-node-dev --respawn --transpileOnly ./src/server.ts"
   },
   "dependencies": {
     "@types/bcryptjs": "^2.4.2",
