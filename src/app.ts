@@ -1,11 +1,8 @@
 import express from 'express'
 import cors from 'cors'
-import { createModels } from './database/bootstrap'
-import { UserInstance } from './models/instance/User'
+import routes from './routes/api'
 
 class App {
-    protected db = createModels()
-
     public express: express.Application
 
     public constructor () {
@@ -22,18 +19,14 @@ class App {
     }
 
     private routes (): void {
+      this.express.use(routes)
       this.express.get('/', (req, res) => {
-        this.db.User.findAll()
-          .then((user: UserInstance[]) => res.status(200).json({ user }))
-          .catch(err => res.status(500).json({ err: ['oops', err] }))
-        // return res.send('Hello World')
+        return res.send('Hello Orbita')
       })
     }
 
     private database (): void {
-      this.db.sequelize.sync()
-        .then(() => console.log('Database connected...'))
-        .catch(err => console.log('Error: ' + err))
+      //
     }
 }
 
