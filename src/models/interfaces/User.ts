@@ -1,9 +1,10 @@
+/* eslint-disable camelcase */
 export interface UserAttributes {
   id?: number
   email: string
   name: string
-  stateId: number
+  state_id: number
   password: string
-  createdAt?: Date
-  updatedAt?: Date
+  created_at?: Date
+  updated_at?: Date
 }
