@@ -1,6 +1,9 @@
+import 'reflect-metadata'
+import { createConnection } from 'typeorm'
 import express from 'express'
 import cors from 'cors'
-import routes from './routes/api'
+import routes from './routes/index'
+// import * as helmet from 'helmet'
 
 class App {
     public express: express.Application
@@ -26,7 +29,7 @@ class App {
     }
 
     private database (): void {
-      //
+      createConnection()
     }
 }
 
