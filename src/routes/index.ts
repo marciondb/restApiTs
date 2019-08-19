@@ -4,8 +4,8 @@ import user from './user'
 
 const routes = Router()
 
-routes.use('/auth', auth)
-routes.use('/user', user)
+routes.use('/api/v1/auth', auth)
+routes.use('/api/v1/user', user)
 
 routes.get('/', (req, res) => {
   return res.send('Hello Orbita')
