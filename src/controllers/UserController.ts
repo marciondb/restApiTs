@@ -13,13 +13,11 @@ static listAll = async (req: Request, res: Response): Promise<Response> => {
     select: ['id', 'name', 'email', 'state_id']
   })
 
-  // Send the users object
   return res.send(users)
 };
 
 static getOneById = async (req: Request, res: Response): Promise<Response> => {
-  const id: number = req.params.id
-
+  const id: number = req.params['id']
   const userRepository = getRepository(User)
   try {
     const user = await userRepository.findOneOrFail(id, {
@@ -27,7 +25,7 @@ static getOneById = async (req: Request, res: Response): Promise<Response> => {
     })
     return res.status(201).json(user)
   } catch (error) {
-    return res.status(404).send('User not found')
+    return res.status(404).send({ error: 'User not found' })
   }
 };
 
@@ -41,7 +39,7 @@ static newUser = async (req: Request, res: Response): Promise<Response> => {
 
   const errors = await validate(user)
   if (errors.length > 0) {
-    res.status(400).send(errors)
+    res.status(400).send({ error: errors })
     return
   }
 
@@ -51,59 +49,60 @@ static newUser = async (req: Request, res: Response): Promise<Response> => {
   try {
     await userRepository.save(user)
   } catch (e) {
-    res.status(409).send('username already in use')
+    res.status(409).send({ error: 'user email already in use' })
     return
   }
-
-  res.status(201).send('User created')
+  user.password = undefined
+  res.status(201).json(user)
 };
 
 static editUser = async (req: Request, res: Response): Promise<Response> => {
-  const id = req.params.id
+  const id = req.params['id']
 
-  const { username, role } = req.body
+  const { name, state_id } = req.body
 
   const userRepository = getRepository(User)
   let user
   try {
     user = await userRepository.findOneOrFail(id)
   } catch (error) {
-    res.status(404).send('User not found')
+    res.status(404).send({ error: 'User not found' })
     return
   }
 
-  user.username = username
-  user.role = role
+  user.name = name
+  user.state_id = state_id
   const errors = await validate(user)
   if (errors.length > 0) {
-    res.status(400).send(errors)
+    res.status(400).send({ error: errors })
     return
   }
 
   try {
     await userRepository.save(user)
   } catch (e) {
-    res.status(409).send('user name already in use')
+    res.status(409).send({ error: 'error editing user ' + JSON.stringify(e) })
     return
   }
 
-  res.status(204).send()
+  user.password = undefined
+  res.status(201).json(user)
 };
 
 static deleteUser = async (req: Request, res: Response): Promise<Response> => {
-  const id = req.params.id
+  const id = req.params['id']
 
   const userRepository = getRepository(User)
 
   try {
     await userRepository.findOneOrFail(id)
   } catch (error) {
-    res.status(404).send('User not found')
+    res.status(404).send({ error: 'User not found' })
     return
   }
   userRepository.delete(id)
 
-  res.status(204).send()
+  res.status(201).send({ success: 'User deleted' })
 };
 };
 
