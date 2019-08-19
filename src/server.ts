@@ -10,7 +10,7 @@ createConnection()
   .then(async () => {
     const app = express()
 
-    // Call midlewares
+    // Call middlewares
     app.use(cors())
     app.use(helmet())
     app.use(bodyParser.json())
