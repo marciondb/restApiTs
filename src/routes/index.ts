@@ -1,14 +1,15 @@
 import { Router } from 'express'
 import auth from './auth'
 import user from './user'
+import * as swaggerUi from 'swagger-ui-express'
+import * as swaggerDocument from '../../swagger.json'
 
-const routes = Router()
+const routers = Router()
 
-routes.use('/api/v1/auth', auth)
-routes.use('/api/v1/user', user)
+routers.use('/api/v1/auth', auth)
+routers.use('/api/v1/user', user)
 
-routes.get('/', (req, res) => {
-  return res.send('Hello Orbita')
-})
+routers.use('/', swaggerUi.serve)
+routers.get('/', swaggerUi.setup(swaggerDocument))
 
-export default routes
+export default routers
