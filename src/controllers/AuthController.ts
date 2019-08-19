@@ -21,7 +21,7 @@ class AuthController {
       res.status(401).send({ error: 'User not found!' })
     }
 
-    if (!user.checkIfUnencryptedPasswordIsValid(password)) {
+    if (!user.checkIfUnEncryptedPasswordIsValid(password)) {
       res.status(401).send({ error: 'Invalid Password!' })
       return
     }
@@ -53,7 +53,7 @@ class AuthController {
       res.status(401).send()
     }
 
-    if (!user.checkIfUnencryptedPasswordIsValid(oldPassword)) {
+    if (!user.checkIfUnEncryptedPasswordIsValid(oldPassword)) {
       res.status(401).send()
       return
     }
