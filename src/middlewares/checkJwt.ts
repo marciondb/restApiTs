@@ -5,7 +5,6 @@ import config from '../config/config'
 
 export const checkJwt = (req: Request, res: Response, next: NextFunction):void => {
   const authHeader = <string>req.headers.authorization
-  console.log(authHeader)
 
   // Para otimizar a verificacao INIT
   if (!authHeader) {
@@ -15,7 +14,7 @@ export const checkJwt = (req: Request, res: Response, next: NextFunction):void =
 
   const parts = authHeader.split(' ')
 
-  if (!parts.length === 2) {
+  if (!(parts.length === 2)) {
     res.status(401).send({ error: 'Token error' })
     return
   }
