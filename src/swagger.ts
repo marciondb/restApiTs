@@ -4,11 +4,10 @@ const options = {
   apis: ['**/*.ts'],
   host: 'localhost:3333',
   swaggerDefinition: {
-    openapi: '3.0.1',
     info: {
-      description: 'RestFul API with TypeScript, TypeORM (MySql) and JWT',
+      title: 'RestFul API with TypeScript, TypeORM (MySql) and JWT',
       version: '1.0.0',
-      title: 'Orbita Challenge API',
+      description: 'Orbita Challenge API',
       contact: {
         email: 'marciondb@gmail.com'
       },
@@ -17,15 +16,15 @@ const options = {
         url: 'https://opensource.org/licenses/MIT'
       }
     },
+    host: 'localhost:3333',
     basePath: '/api/v1',
-    components: {
-      securitySchemes: {
-        bearerAuth: {
-          type: 'http',
-          scheme: 'bearer',
-          bearerFormat: 'JWT',
-          description: 'Enter your bearer token in the format **Bearer &lt;token>**'
-        }
+    securityDefinitions: {
+      bearerAuth: {
+        type: 'apiKey',
+        scheme: 'bearer',
+        name: 'Authorization',
+        bearerFormat: 'JWT',
+        description: 'Enter your bearer token in the format **Bearer &lt;token>**'
       }
     },
     security: [{

@@ -6,7 +6,7 @@ const router = Router()
 
 /**
 * @swagger
-* '/api/v1/auth':
+* '/auth/login':
 *    post:
 *      tags:
 *        - auth
@@ -14,17 +14,19 @@ const router = Router()
 *      description: Login the API.
 *      operationId: login
 *      produces:
-*        - application/json
+*      - application/json
 *      parameters:
-*        - in: body
-*          name: body
-*          description: Email and Password
-*          required: true
-*          schema:
-*            $ref: '#/definitions/Login'
+*      - in: body
+*        name: body
+*        description: Email and Password. Use for test user = admin and password = admin
+*        required: true
+*        schema:
+*          $ref: '#/definitions/Login'
 *      responses:
-*        '201':
+*        '200':
 *          description: Return User plus token
+*          schema:
+*            $ref: "#/definitions/User"
 *        '404':
 *          description: User not found or Invalid Password!
 */

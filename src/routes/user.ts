@@ -6,7 +6,7 @@ const router = Router()
 
 /**
 * @swagger
-* /api/v1/user:
+* /user:
 *    get:
 *      tags:
 *        - user
@@ -15,23 +15,19 @@ const router = Router()
 *      operationId: listAllUser
 *      produces:
 *        - application/json
-*      parameters:
-*        - in: body
-*          name: body
+*      responses:
+*        default:
 *          description: get all users
 *          schema:
 *            type: array
 *            items:
-*              $ref: '#/definitions/User'
-*      responses:
-*        default:
-*          description: Array of User
+*              $ref: "#/definitions/Login"
 */
 router.get('/', checkJwt, UserController.listAll)
 
 /**
 * @swagger
-* /api/v1/user:
+* /user:
 *    post:
 *      tags:
 *        - user
@@ -55,7 +51,7 @@ router.post('/', checkJwt, UserController.newUser)
 
 /**
 * @swagger
-* '/api/v1/user/{id}':
+* '/user/{id}':
 *    get:
 *      tags:
 *        - user
@@ -65,7 +61,7 @@ router.post('/', checkJwt, UserController.newUser)
 *      produces:
 *        - application/json
 *      parameters:
-*        - in: body
+*        - in: path
 *          name: id
 *          description: The id that needs to be fetched. Use 1 for testing.
 *          required: true
@@ -88,7 +84,7 @@ router.get('/:id([0-9]+)', checkJwt, UserController.getOneById)
 
 /**
 * @swagger
-* '/api/v1/user/{id}':
+* '/user/{id}':
 *    patch:
 *      tags:
 *        - user
@@ -119,7 +115,7 @@ router.patch('/:id([0-9]+)', checkJwt, UserController.editUser)
 
 /**
 * @swagger
-* '/api/v1/user/{id}':
+* '/user/{id}':
 *    delete:
 *      tags:
 *        - user

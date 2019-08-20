@@ -9,8 +9,10 @@ import config from '../config/config'
 class AuthController {
   static login = async (req: Request, res: Response): Promise<Response> => {
     const { email, password } = req.body
+    console.log(req.body)
     if (!(email && password)) {
       res.status(400).send({ error: 'Email and password are mandatory!' })
+      return
     }
 
     const userRepository = getRepository(User)
@@ -19,6 +21,7 @@ class AuthController {
       user = await userRepository.findOneOrFail({ where: { email } })
     } catch (error) {
       res.status(401).send({ error: 'User not found!' })
+      return
     }
 
     if (!user.checkIfUnEncryptedPasswordIsValid(password)) {
