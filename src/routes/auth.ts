@@ -18,7 +18,7 @@ const router = Router()
 *      parameters:
 *      - in: body
 *        name: body
-*        description: Email and Password. Use for test user = admin and password = admin
+*        description: Email and Password. Use for test email = admin@admin.com and password = admin
 *        required: true
 *        schema:
 *          $ref: '#/definitions/Login'

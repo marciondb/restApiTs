@@ -6,4 +6,5 @@ tmp/
 temp/
 /dist/
 /package-lock.json
-/yarn.lock
+*.lock
+*.log

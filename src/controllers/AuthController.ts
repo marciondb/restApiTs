@@ -9,7 +9,7 @@ import config from '../config/config'
 class AuthController {
   static login = async (req: Request, res: Response): Promise<Response> => {
     const { email, password } = req.body
-    console.log(req.body)
+
     if (!(email && password)) {
       res.status(400).send({ error: 'Email and password are mandatory!' })
       return
