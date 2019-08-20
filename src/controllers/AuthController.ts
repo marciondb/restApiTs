@@ -45,7 +45,7 @@ class AuthController {
 
     const { oldPassword, newPassword } = req.body
     if (!(oldPassword && newPassword)) {
-      res.status(400).send()
+      res.status(400).send({ error: 'oldPassword and newPassword are mandatory!' })
     }
 
     const userRepository = getRepository(User)
@@ -53,25 +53,25 @@ class AuthController {
     try {
       user = await userRepository.findOneOrFail(id)
     } catch (id) {
-      res.status(401).send()
+      res.status(401).send({ error: 'User not found!' })
     }
 
     if (!user.checkIfUnEncryptedPasswordIsValid(oldPassword)) {
-      res.status(401).send()
+      res.status(401).send({ error: 'oldPassword is invalid!' })
       return
     }
 
     user.password = newPassword
     const errors = await validate(user)
     if (errors.length > 0) {
-      res.status(400).send(errors)
+      res.status(400).send({ error: errors })
       return
     }
 
     user.hashPassword()
     userRepository.save(user)
-
-    res.status(204).send()
+    user.password = undefined
+    res.status(200).json(user)
   };
 }
 export default AuthController

@@ -35,6 +35,15 @@ import * as bcrypt from 'bcryptjs'
 *        type: string
 *    xml:
 *      name: Login
+*  ChangePassword:
+*    type: object
+*    properties:
+*      oldPassword:
+*        type: string
+*      newPassword:
+*        type: string
+*    xml:
+*      name: ChangePassword
 *  ApiResponse:
 *    type: object
 *    properties:

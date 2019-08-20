@@ -32,6 +32,34 @@ const router = Router()
 */
 router.post('/login', AuthController.login)
 
+/**
+* @swagger
+* '/auth/change-password':
+*    post:
+*      tags:
+*        - auth
+*      summary: Change Password
+*      description: Change Password from the current user logged. This can only be done by the logged in user.
+*      operationId: changePassword
+*      produces:
+*      - application/json
+*      parameters:
+*      - in: body
+*        name: body
+*        description: oldPassword and newPassword
+*        required: true
+*        schema:
+*          $ref: '#/definitions/ChangePassword'
+*      responses:
+*        '200':
+*          description: Password changed.
+*          schema:
+*            $ref: "#/definitions/User"
+*        '400':
+*          description: oldPassword and newPassword are mandatory!
+*        '404':
+*          description: User not found or oldPassword is invalid!
+*/
 router.post('/change-password', checkJwt, AuthController.changePassword)
 
 export default router
