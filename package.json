@@ -22,7 +22,7 @@
     "express": "^4.15.4",
     "jsonwebtoken": "^8.5.1",
     "mysql": "^2.14.1",
-    "reflect-metadata": "^0.1.10",
+    "reflect-metadata": "^0.1.13",
     "sucrase": "^3.10.1",
     "swagger-jsdoc": "^3.4.0",
     "ts-node-dev": "^1.0.0-pre.41",

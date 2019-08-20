@@ -2,6 +2,7 @@ import { createConnection, Connection } from 'typeorm'
 import * as express from 'express'
 import * as cors from 'cors'
 import routes from './routes'
+import 'reflect-metadata'
 
 class App {
     public express: express.Application

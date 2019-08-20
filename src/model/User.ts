@@ -71,11 +71,12 @@ export class User {
     @Column({ unsigned: true })
     @IsNotEmpty()
     @OneToOne(() => State)
-    @JoinColumn()
+    @JoinColumn({ name: 'state_id' })
     state_id: number;
 
     @Column()
     @Length(4, 255)
+    @IsNotEmpty()
     password: string;
 
     @Column()
