@@ -5,6 +5,47 @@ import { Entity, PrimaryGeneratedColumn, Column, Unique, CreateDateColumn,
 import { Length, IsNotEmpty } from 'class-validator'
 import * as bcrypt from 'bcryptjs'
 
+/**
+* @swagger
+* definitions:
+*  User:
+*    type: object
+*    properties:
+*      id:
+*        type: integer
+*        format: int64
+*      email:
+*        type: string
+*      name:
+*        type: string
+*      password:
+*        type: string
+*      state_id:
+*        type: integer
+*        format: int64
+*        description: User State Id
+*    xml:
+*      name: User
+*  Login:
+*    type: object
+*    properties:
+*      email:
+*        type: string
+*      password:
+*        type: string
+*    xml:
+*      name: Login
+*  ApiResponse:
+*    type: object
+*    properties:
+*      code:
+*        type: integer
+*        format: int32
+*      type:
+*        type: string
+*      message:
+*        type: string
+*/
 @Entity()
 @Unique(['email'])
 export class User {
