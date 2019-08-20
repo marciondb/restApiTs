@@ -94,9 +94,14 @@ router.get('/:id([0-9]+)', checkJwt, UserController.getOneById)
 *      produces:
 *        - application/json
 *      parameters:
-*        - in: body
+*        - in: path
 *          name: id
 *          description: The id that need to be updated.
+*          required: true
+*          type: number
+*        - in: body
+*          name: body
+*          description: Only name and state_id to be updated.
 *          required: true
 *          type: number
 *          schema:
@@ -125,7 +130,7 @@ router.patch('/:id([0-9]+)', checkJwt, UserController.editUser)
 *      produces:
 *        - application/json
 *      parameters:
-*        - in: body
+*        - in: path
 *          name: id
 *          description: The id that need to be deleted.
 *          required: true

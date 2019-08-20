@@ -11,7 +11,7 @@ const router = Router()
 *      tags:
 *        - auth
 *      summary: Login
-*      description: Login the API.
+*      description: Log in API and get the token.
 *      operationId: login
 *      produces:
 *      - application/json
