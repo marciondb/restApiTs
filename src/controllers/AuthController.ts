@@ -30,7 +30,7 @@ class AuthController {
     }
 
     const token = jwt.sign(
-      { userId: user.id, email: user.email },
+      { userId: user.id, email: user.email, userStateId: user.state_id },
       config.jwtSecret,
       { expiresIn: '3h' }
     )

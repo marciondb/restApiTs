@@ -1,9 +1,11 @@
 /* eslint-disable camelcase */
 import { Entity, PrimaryGeneratedColumn, Column, Unique, CreateDateColumn,
-  UpdateDateColumn
+  UpdateDateColumn, OneToOne, JoinColumn
 } from 'typeorm'
 import { Length, IsNotEmpty } from 'class-validator'
 import * as bcrypt from 'bcryptjs'
+
+import { State } from './State'
 
 /**
 * @swagger
@@ -58,7 +60,7 @@ import * as bcrypt from 'bcryptjs'
 @Entity()
 @Unique(['email'])
 export class User {
-    @PrimaryGeneratedColumn()
+    @PrimaryGeneratedColumn({ unsigned: true })
     id: number;
 
     @Column()
@@ -66,8 +68,10 @@ export class User {
     @Length(4, 45)
     name: string;
 
-    @Column()
+    @Column({ unsigned: true })
     @IsNotEmpty()
+    @OneToOne(() => State)
+    @JoinColumn()
     state_id: number;
 
     @Column()
