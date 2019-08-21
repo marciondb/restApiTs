@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/camelcase */
 /* eslint-disable camelcase */
 import { Request, Response } from 'express'
-import { getRepository, In } from 'typeorm'
+import { getRepository } from 'typeorm'
 
 import { PanelInstallation } from '../model/PanelInstallation'
 
