@@ -25,7 +25,7 @@ import { DataProvider } from './DataProvider'
 *        format: date-time
 *      system_size:
 *        type: number
-*        format: double
+*        format: float
 *      zipcode:
 *        type: integer
 *      stateId:
@@ -34,7 +34,7 @@ import { DataProvider } from './DataProvider'
 *        description: Panel Installation State Id
 *      cost:
 *        type: number
-*        format: double
+*        format: float
 *    xml:
 *      name: PanelInstallation
 */
@@ -51,12 +51,10 @@ export class PanelInstallation {
 
     @Column({ name: 'installation_date' })
     @IsNotEmpty()
-    @Length(4, 45)
     installation_date: Date;
 
-    @Column({ type: 'decimal', name: 'system_size' })
+    @Column({ type: 'decimal', name: 'system_size', precision: 10, scale: 3 })
     @IsNotEmpty()
-    @Length(4, 45)
     system_size: number;
 
     @Column()
@@ -70,7 +68,7 @@ export class PanelInstallation {
     @JoinColumn({ name: 'state_id' })
     stateId: number;
 
-    @Column({ type: 'decimal' })
+    @Column({ type: 'decimal', precision: 10, scale: 7 })
     @IsNotEmpty()
     cost: number;
 
