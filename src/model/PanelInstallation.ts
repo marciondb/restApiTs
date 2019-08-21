@@ -10,28 +10,31 @@ import { DataProvider } from './DataProvider'
 /**
 * @swagger
 * definitions:
-*  User:
+*  PanelInstallation:
 *    type: object
 *    properties:
 *      id:
 *        type: integer
 *        format: int64
-*      data_provider_id:
+*      dataProvider:
 *        type: integer
 *        format: int64
 *        description: Panel Installation Data Provider Id
 *      installation_date:
-*        type: date
+*        type: string
+*        format: date-time
 *      system_size:
-*        type: decimal
+*        type: number
+*        format: double
 *      zipcode:
 *        type: integer
-*      state_id:
+*      stateId:
 *        type: integer
 *        format: int64
 *        description: Panel Installation State Id
 *      cost:
-*        type: decimal
+*        type: number
+*        format: double
 *    xml:
 *      name: PanelInstallation
 */
@@ -40,11 +43,11 @@ export class PanelInstallation {
     @PrimaryGeneratedColumn({ unsigned: true })
     id: number;
 
-    @Column({ unsigned: true })
+    @Column({ unsigned: true, name: 'data_provider_id' })
     @IsNotEmpty()
     @OneToOne(() => DataProvider)
     @JoinColumn({ name: 'data_provider_id' })
-    data_provider_id: number;
+    dataProvider: number;
 
     @Column({ name: 'installation_date' })
     @IsNotEmpty()
@@ -61,11 +64,11 @@ export class PanelInstallation {
     @Length(4, 11)
     zipcode: number;
 
-    @Column({ unsigned: true })
+    @Column({ unsigned: true, name: 'state_id' })
     @IsNotEmpty()
     @OneToOne(() => State)
     @JoinColumn({ name: 'state_id' })
-    state_id: number;
+    stateId: number;
 
     @Column({ type: 'decimal' })
     @IsNotEmpty()

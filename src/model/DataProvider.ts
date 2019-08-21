@@ -1,6 +1,6 @@
 /* eslint-disable camelcase */
 import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn,
-  UpdateDateColumn
+  UpdateDateColumn, Unique
 } from 'typeorm'
 import { Length, IsNotEmpty } from 'class-validator'
 
@@ -19,6 +19,7 @@ import { Length, IsNotEmpty } from 'class-validator'
 *      name: DataProvider
 */
 @Entity()
+@Unique(['name'])
 export class DataProvider {
     @PrimaryGeneratedColumn({ unsigned: true })
     id: number;
