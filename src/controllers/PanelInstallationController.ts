@@ -8,7 +8,6 @@ import { PanelInstallation } from '../model/PanelInstallation'
 class PanelInstallationController {
   public listByUserStateId = async (req: Request, res: Response): Promise<Response> => {
     const skip: number = req.params['skip']
-    console.log(skip)
     const userStateId = res.locals.jwtPayload.userStateId
     const panelInstallationRepository = getRepository(PanelInstallation)
 
