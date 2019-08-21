@@ -1,0 +1,17 @@
+{
+  "type": "mysql",
+  "host": "localhost",
+  "username": "root",
+  "password": "FpqoJ-A2EW@uXGpQ@bnY",
+  "database": "orbita",
+  "synchronize": false,
+  "logging": false,
+  "entities": ["src/model/**/*.ts"],
+  "migrations": ["src/migration/**/*.ts"],
+  "subscribers": ["src/subscriber/**/*.ts"],
+  "cli": {
+    "entitiesDir": "src/model",
+    "migrationsDir": "src/migration",
+    "subscribersDir": "src/subscriber"
+  }
+}
