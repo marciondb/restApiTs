@@ -6,8 +6,6 @@
   "author": "Márcio Dias <marciondb@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "dev": "sucrase-node src/server.ts",
-    "prebuild": "rimraf dist",
     "build": "sucrase ./src -d ./dist --transforms typescript,imports",
     "start": "set debug=* && ts-node-dev --respawn --transpileOnly ./src/server.ts",
     "test": "jest --passWithNoTests --detectOpenHandles"
