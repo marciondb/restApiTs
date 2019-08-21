@@ -4,7 +4,7 @@
   "username": "root",
   "password": "FpqoJ-A2EW@uXGpQ@bnY",
   "database": "orbita",
-  "synchronize": true,
+  "synchronize": false,
   "logging": false,
   "entities": ["src/model/**/*.ts"],
   "migrations": ["src/migration/**/*.ts"],

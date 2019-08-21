@@ -68,7 +68,7 @@ export class PanelInstallation {
     @JoinColumn({ name: 'state_id' })
     stateId: number;
 
-    @Column({ type: 'decimal', precision: 10, scale: 7 })
+    @Column({ type: 'decimal', precision: 14, scale: 7 })
     @IsNotEmpty()
     cost: number;
 

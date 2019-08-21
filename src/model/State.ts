@@ -1,6 +1,6 @@
 /* eslint-disable camelcase */
 import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn,
-  UpdateDateColumn
+  UpdateDateColumn, Unique
 } from 'typeorm'
 import { Length, IsNotEmpty } from 'class-validator'
 
@@ -19,13 +19,14 @@ import { Length, IsNotEmpty } from 'class-validator'
 *      name: State
 */
 @Entity()
+@Unique(['name'])
 export class State {
     @PrimaryGeneratedColumn({ unsigned: true })
     id: number;
 
     @Column()
     @IsNotEmpty()
-    @Length(4, 45)
+    @Length(2, 45)
     name: string;
 
     @Column()
