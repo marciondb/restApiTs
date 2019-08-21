@@ -5,7 +5,7 @@
   "password": "FpqoJ-A2EW@uXGpQ@bnY",
   "database": "orbita",
   "synchronize": true,
-  "logging": false,
+  "logging": true,
   "entities": ["src/model/**/*.ts"],
   "migrations": ["src/migration/**/*.ts"],
   "subscribers": ["src/subscriber/**/*.ts"],
