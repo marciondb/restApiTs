@@ -44,3 +44,4 @@ Caso prefira, importe o orbita.postman_collection.json no Postman, que está na 
 1. Colocar repository pattern para retirar regra de negócio de controllers
 2. Criar arquivos de migrations
 3. Fazer testes
+4. Colocar o padrão i18n
