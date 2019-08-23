@@ -65,4 +65,21 @@ router.post('/getNumberOfInstallationByStateId', checkJwt, PanelInstallationCont
 */
 router.post('/getInstallationWIthHigherCostByStateId', checkJwt, PanelInstallationController.getInstallationWIthHigherCostByStateId)
 
+/**
+* @swagger
+* /panelInstallation/get3HigherMonthInstallationByStateId:
+*    post:
+*      tags:
+*        - Panel Installation
+*      summary: Get the 3 months of the year with the most installations
+*      description: Get the 3 months of the year with the most installations by logged user state id
+*      operationId: get3HigherMonthInstallationByStateId
+*      produces:
+*        - application/json
+*      responses:
+*        default:
+*          description: Number Of Installation By User State Id with State
+*/
+router.post('/get3HigherMonthInstallationByStateId', checkJwt, PanelInstallationController.get3HigherMonthInstallationByStateId)
+
 export default router
