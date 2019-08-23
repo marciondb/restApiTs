@@ -24,6 +24,44 @@ class PanelInstallationController {
 
     return res.send(panelInstallations)
   }
+
+  public getNumberOfInstallationByStateId = async (req: Request, res: Response): Promise<Response> => {
+    const userStateId = res.locals.jwtPayload.userStateId
+    const panelInstallationRepository = getRepository(PanelInstallation)
+
+    const panelInstallations = await panelInstallationRepository.findAndCount({
+      select: ['id'],
+      relations: ['stateId'],
+      where: { stateId: userStateId },
+      order: {
+        id: 'ASC'
+      },
+      take: 1
+    })
+
+    const items = panelInstallations[0]
+    const count = panelInstallations[1]
+    const pi: PanelInstallation = items[0]
+
+    return res.send({ stateName: pi.stateId['name'], count: count })
+  }
+
+  public getInstallationWIthHigherCostByStateId = async (req: Request, res: Response): Promise<Response> => {
+    const userStateId = res.locals.jwtPayload.userStateId
+    const panelInstallationRepository = getRepository(PanelInstallation)
+
+    const panelInstallations = await panelInstallationRepository.find({
+      select: ['id', 'zipcode', 'cost'],
+      relations: ['stateId'],
+      where: { stateId: userStateId },
+      order: {
+        cost: 'DESC'
+      },
+      take: 1
+    })
+
+    return res.json(panelInstallations[0])
+  }
 }
 
 export default new PanelInstallationController()

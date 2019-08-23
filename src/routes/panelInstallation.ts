@@ -31,4 +31,38 @@ const router = Router()
 */
 router.get('/listByUserStateId/:skip([0-9]+)', checkJwt, PanelInstallationController.listByUserStateId)
 
+/**
+* @swagger
+* /panelInstallation/getNumberOfInstallationByStateId:
+*    post:
+*      tags:
+*        - Panel Installation
+*      summary: Get the total of Installation by logged user state id
+*      description: Get the total of Installation by logged user state id
+*      operationId: getNumberOfInstallationByStateId
+*      produces:
+*        - application/json
+*      responses:
+*        default:
+*          description: Number Of Installation By User State Id with State
+*/
+router.post('/getNumberOfInstallationByStateId', checkJwt, PanelInstallationController.getNumberOfInstallationByStateId)
+
+/**
+* @swagger
+* /panelInstallation/getInstallationWIthHigherCostByStateId:
+*    post:
+*      tags:
+*        - Panel Installation
+*      summary: Get Installation WIth Higher Cost by logged user state id
+*      description: Get Installation WIth Higher Cost by logged user state id
+*      operationId: getInstallationWIthHigherCostByStateId
+*      produces:
+*        - application/json
+*      responses:
+*        default:
+*          description: Number Of Installation By User State Id with State
+*/
+router.post('/getInstallationWIthHigherCostByStateId', checkJwt, PanelInstallationController.getInstallationWIthHigherCostByStateId)
+
 export default router
