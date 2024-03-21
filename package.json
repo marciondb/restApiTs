@@ -24,7 +24,7 @@
     "sucrase": "^3.10.1",
     "swagger-jsdoc": "^3.4.0",
     "ts-node-dev": "^1.0.0-pre.41",
-    "typeorm": "0.2.18"
+    "typeorm": "0.3.0"
   },
   "devDependencies": {
     "@types/cors": "^2.8.5",
